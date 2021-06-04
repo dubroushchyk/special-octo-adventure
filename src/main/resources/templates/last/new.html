@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New UserAccount</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/}" th:object="${userAccount}">
+    <label for="userName">Enter userName: </label>
+    <input type="text" th:field="*{userName}" id="userName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">UserName Error</div>
+    <br/>
+    <br/>
+    <label for="password">Enter password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+    <br/>
+    <br/>
+    <label for="firstName">Enter firstName: </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FirstName Error</div>
+    <br/>
+    <br/>
+    <label for="lastName">Enter lastName: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</div>
+    <br/>
+    <br/>
+<!--    <label for="enumRole">Select Role</label>-->
+    <select id="enumRole" th:field="*{role}">
+        <option th:each="role : ${T(com.dubroushchyk.first_spring.enums.EnumRole).values()}"
+                th:value="${role}" th:text="${role}"></option>
+    </select>
+    <br/>
+    <br/>
+<!--    <div style="color:red" th:if="${#fields.hasErrors('enumRole')}" th:errors="*{enumRole}">Role Error</div>-->
+    <select name="enumStatus" th:field="*{status}">
+        <option th:each="status : ${T(com.dubroushchyk.first_spring.enums.EnumStatus).values()}"
+                th:value="${status}" th:text="${status}"></option>
+    </select>
+    <br/>
+    <br/>
+<!--    <label for="status">Enter email: </label>-->
+<!--    <input type="text" th:field="*{status}" id="status"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Status Error</div>-->
+<!--    <br/>-->
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

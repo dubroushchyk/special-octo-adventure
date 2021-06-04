@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <title>Create an account</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/user/{id}/edit(id=${userAccount.id})}"
+          th:object="${userAccount}"
+          method="POST"
+          id="user">
+        <input type="hidden" th:field="*{id}" th:value="${userAccount.id}"/>
+        <input type="hidden" th:field="*{createdAt}" th:value="${userAccount.createdAt}"/>
+        <input type="hidden" th:field="*{password}" th:value="${userAccount.password}"/>
+        <label for="name">Name</label>
+        <input type="text"
+               th:field="*{userName}"
+               id="name"
+               placeholder="Name">
+        <span th:if="${#fields.hasErrors('userName')}"
+              th:errors="*{userName}"></span>
+        <label for="firstname">First name</label>
+        <input type="text"
+               th:field="*{firstName}"
+               id="firstname"
+               placeholder="First name">
+        <span th:if="${#fields.hasErrors('firstName')}"
+              th:errors="*{firstName}"></span>
+        <label for="lastName">Last name</label>
+        <input type="text" th:field="*{lastName}" id="lastName"
+               placeholder="Last name">
+        <span th:if="${#fields.hasErrors('lastName')}"
+              th:errors="*{lastName}"></span>
+        <label for="role">Role</label>
+        <select name="role" id="role">
+            <option th:each="role : ${T(com.dubroushchyk.first_spring.enums.EnumRole).values()}"
+                    th:value="*{role}"
+                    th:text="*{role}"></option>
+        </select>
+        <label for="status">Status</label>
+        <select name="status" id="status">
+            <option th:each="status : ${T(com.dubroushchyk.first_spring.enums.EnumStatus).values()}"
+                    th:value="*{status}"
+                    th:text="*{status}"></option>
+        </select>
+        <input type="submit" value="Update User">
+    </form>
+</div>
+
+</body>
+</html>

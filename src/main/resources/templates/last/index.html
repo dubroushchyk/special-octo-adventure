@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <title>Create an account</title>
+</head>
+<body>
+<div class="container">
+    <div sec:authorize="isAuthenticated()">
+        <form id="logoutForm" method="POST" th:action="@{/logout}">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+
+        <h2>Welcome <span sec:authentication="name"></span> | <a style="color: RED" onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+    <div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>View</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="userAccount : ${userAccounts}">
+                <td><div th:text="${userAccount.id}"></div></td>
+                <td><div th:text="${userAccount.userName}"></div></td>
+                <td><div th:text="${userAccount.firstName}"></div></td>
+                <td><div th:text="${userAccount.lastName}"></div></td>
+                <td><div th:text="${userAccount.role}"></div></td>
+                <td><div th:text="${userAccount.status}"></div></td>
+                <td><div th:text="${userAccount.createdAt}"></div></td>
+                <td><a th:href="@{/user/{id}(id=${userAccount.id})}">View</a></td>
+                <td><a th:href="@{/user/{id}/edit(id=${userAccount.id})}">Edit</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
