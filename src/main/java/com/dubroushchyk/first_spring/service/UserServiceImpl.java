@@ -18,10 +18,6 @@ public class UserServiceImpl implements UserAccountService {
         this.userAccountRepository = userAccountRepository;
     }
 
-//    public UserAccount updateUserAccountById(int id) {
-//        return userAccountRepository
-//    }
-
     public List<UserAccount> getAllUsersAccounts() {
         return userAccountRepository.findAll();
     }

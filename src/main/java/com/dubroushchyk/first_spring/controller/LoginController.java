@@ -35,4 +35,5 @@ public class LoginController {
     public void setSecurityService(SecurityService securityService) {
         this.securityService = securityService;
     }
+
 }

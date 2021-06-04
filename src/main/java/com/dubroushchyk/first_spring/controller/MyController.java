@@ -39,11 +39,6 @@ public class MyController {
         this.securityService = securityService;
     }
 
-    @GetMapping("/tt")
-    public ModelAndView showAllUserAccountTT() {
-        return new ModelAndView("_menu");
-    }
-
     @GetMapping("/user")
     public String showAllUserAccount(Model model) {
         model.addAttribute("userAccounts", iUserAccountService.getAllUsersAccounts());
@@ -75,40 +70,11 @@ public class MyController {
         return "redirect:/user";
     }
 
-//    @DeleteMapping("/user/delete/{id}")
-//    public String delete (@PathVariable("id") int id) {
-//        iUserAccountService.deleteUserAccount(id);
-//        return "redirect:/user";
-//    }
-
     @DeleteMapping("/user/delete/{id}")
     public String deleteUserAccount (@PathVariable int id) {
         iUserAccountService.deleteUserAccount(id);
         return "employee" + id + " was delete";
     }
-//    @PostMapping ("/new")
-//    public String addNewUserAccount_create(@ModelAttribute ("userAccount") @Valid UserAccount userAccount,
-//                                    BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "last/new";
-//        }
-//        iUserAccountService.saveUserAccount(userAccount);
-//        return "redirect:/last/new";
-//    }
-
-//    @GetMapping ("/user/{id}/edit")
-//    public String editUserAccount (Model model, @PathVariable("id") int id) {
-//        model.addAttribute("userAccount", iUserAccountService.getUserAccountById(id));
-//        return "/last/edit";
-//    }
-//
-//    @PatchMapping("/{id}")
-//    public String updateUserAccount(@ModelAttribute("userAccount") UserAccount userAccount
-//            , @PathVariable("id") int id) {
-//        iUserAccountService. //  КАК СДЕЛАТЬ
-//        return "redirect:/people";
-//    }
-
 
     @GetMapping("/user/{id}/edit")
     public String editUserAccount (@PathVariable Integer id, Model model) {

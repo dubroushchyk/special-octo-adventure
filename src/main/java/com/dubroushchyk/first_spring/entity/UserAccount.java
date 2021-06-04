@@ -44,11 +44,9 @@ public class UserAccount {
     @Column (name = "status")
     private EnumStatus status;
 
-//    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     @Column (name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
 
     public UserAccount() {
     }
@@ -116,4 +114,5 @@ public class UserAccount {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
 }
